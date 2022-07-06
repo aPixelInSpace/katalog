@@ -109,17 +109,28 @@ public class GildedRoseTest
         items[0].Quality.Should().Be(expectedQuality);
     }
     
+    // [Theory]
+    // [InlineData("Conjured Mana Cake", 4, 4, 3, 2)]
+    // // "Conjured" items degrade in Quality twice as fast as normal items
+    // public void Conjured_DecreasesInQualityTwiceAsFastAsNormalItem(string name, int sellIn, int quality, int expectedSellIn, int expectedQuality)
+    // {
+    //     var items = new List<Item> { new() { Name = name, SellIn = sellIn, Quality = quality } };
+    //     var app = new GildedRose(items);
+    //     app.UpdateQuality();
+    //
+    //     items[0].Name.Should().Be(name);
+    //     items[0].SellIn.Should().Be(expectedSellIn);
+    //     items[0].Quality.Should().Be(expectedQuality);
+    // }
+    
     [Theory]
-    [InlineData("Conjured Mana Cake", 4, 4, 3, 2)]
-    // "Conjured" items degrade in Quality twice as fast as normal items
-    public void Conjured_DecreasesInQualityTwiceAsFastAsNormalItem(string name, int sellIn, int quality, int expectedSellIn, int expectedQuality)
+    [InlineData("Sulfuras, Hand of Ragnaros", GildedRose.UpdatePolicy.Legendary)]
+    [InlineData("Aged Brie", GildedRose.UpdatePolicy.OlderIsBetter)]
+    [InlineData("Elixir of the Mongoose", GildedRose.UpdatePolicy.Normal)]
+    [InlineData("Conjured Sword of the Leviathan", GildedRose.UpdatePolicy.Conjured)]
+    [InlineData("Backstage passes to a TAFKAL80ETC concert", GildedRose.UpdatePolicy.HotItem)]
+    public void CorrectUpdatePolicyBasedOnName(string name, GildedRose.UpdatePolicy expectedUpdatePolicy)
     {
-        var items = new List<Item> { new() { Name = name, SellIn = sellIn, Quality = quality } };
-        var app = new GildedRose(items);
-        app.UpdateQuality();
-
-        items[0].Name.Should().Be(name);
-        items[0].SellIn.Should().Be(expectedSellIn);
-        items[0].Quality.Should().Be(expectedQuality);
+        GildedRose.GetUpdatePolicy(name).Should().Be(expectedUpdatePolicy);
     }
 }

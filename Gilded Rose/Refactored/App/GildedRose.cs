@@ -2,8 +2,17 @@
 
 public class GildedRose
 {
+    public enum UpdatePolicy
+    {
+        Normal,
+        Legendary,
+        OlderIsBetter,
+        HotItem,
+        Conjured,
+    }
+    
     IList<Item> Items;
-
+    
     public GildedRose(IList<Item> Items)
     {
         this.Items = Items;
@@ -13,6 +22,11 @@ public class GildedRose
     {
         for (var i = 0; i < Items.Count; i++)
         {
+            // determine the type of item
+            
+            // update according to the previous type
+            
+            
             if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
             {
                 if (Items[i].Quality > 0)
@@ -83,5 +97,20 @@ public class GildedRose
                 }
             }
         }
+    }
+
+    public static UpdatePolicy GetUpdatePolicy(string itemName)
+    {
+        var legendaryItems = new[] { "Sulfuras, Hand of Ragnaros" };
+        var olderAreBetterItems = new[] { "Aged Brie" };
+        var hotItemsPrefix = new[] { "Backstage passes" };
+        var conjuredPrefix = new[] { "Conjured" };
+        
+        if (legendaryItems.Contains(itemName)) return UpdatePolicy.Legendary;
+        if (olderAreBetterItems.Contains(itemName)) return UpdatePolicy.OlderIsBetter;
+        if (hotItemsPrefix.Any(itemName.StartsWith)) return UpdatePolicy.HotItem;
+        if (conjuredPrefix.Any(itemName.StartsWith)) return UpdatePolicy.Conjured;
+
+        return UpdatePolicy.Normal;
     }
 }
