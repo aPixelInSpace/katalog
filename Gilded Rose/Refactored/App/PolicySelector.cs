@@ -6,7 +6,6 @@ public static class PolicySelector
 {
     public static IUpdatePolicy ChooseAppropriate(string itemName)
     {
-        // new values according to the policy
         if (Config.LegendaryItems.Contains(itemName)) return new LegendaryPolicy();
         if (Config.OlderAreBetterItems.Contains(itemName)) return new OlderIsBetterPolicy();
         if (Config.HotItemsPrefix.Any(itemName.StartsWith)) return new HotItemPolicy();
