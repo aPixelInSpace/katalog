@@ -6,6 +6,7 @@ namespace Tests.UpdatePolicies;
 public class OlderIsBetterPolicyTest
 {
     [Theory]
+    [InlineData(-1, 0, -2, 2)]
     [InlineData(2, 0, 1, 1)]
     [InlineData(0, 49, -1, 50)]
     [InlineData(0, 50, -1, 50)]
