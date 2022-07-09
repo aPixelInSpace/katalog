@@ -16,10 +16,8 @@ public class GildedRose
     {
         foreach (var item in Items)
         {
-            // determine the update policy for the item
             var policy = PolicySelector.ChooseAppropriate(item.Name);
             
-            // update according to the policy
             var (newSellIn, newQuality) = policy.UpdatedSellInAndQuality(item.SellIn, item.Quality);
             
             item.SellIn = newSellIn;

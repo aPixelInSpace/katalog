@@ -2,7 +2,7 @@
 
 _A pun that I shamelessly stole from [Steve "Ardalis" Smith](https://github.com/ardalis/kata-catalog)_
 
-Every kata has an "original" folder with the code, the "refactored" folder is my proposed solution to it.
+Every kata has an "original" folder with the untouched code, the "refactored" folder is my proposed solution to it.
 
 ## Gilded Rose
 
