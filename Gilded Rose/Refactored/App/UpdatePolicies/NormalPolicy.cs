@@ -10,7 +10,7 @@ public class NormalPolicy : IUpdatePolicy
         var decreasedQuality = sellIn > Config.SellInThreshold ? quality - QualityDegradationRate : quality - QualityDegradationRate * 2;
             
         // The Quality of an item is never negative
-        var newQuality = decreasedQuality >= Config.MinQuality ? decreasedQuality : Config.MinQuality;
+        var newQuality = IUpdatePolicy.NonNegativeQuality(decreasedQuality);
             
         return (
             sellIn - SellInDegradationRate,

@@ -7,11 +7,10 @@ public class OlderIsBetterPolicy : IUpdatePolicy
     
     public (int newSellIn, int newQuality) UpdatedSellInAndQuality(int sellIn, int quality)
     {
+        // Quality increases the older it gets
         var increaseQuality = sellIn > Config.SellInThreshold ? quality + QualityIncreaseRate : quality + QualityIncreaseRate * 2;
         
-        // Quality increases the older it gets
         // The Quality of an item is never more than 50
-        return (sellIn - SellInDegradationRate,
-            increaseQuality < Config.MaxQuality ? increaseQuality : Config.MaxQuality);
+        return (sellIn - SellInDegradationRate, IUpdatePolicy.MaxQuality(increaseQuality));
     }
 }

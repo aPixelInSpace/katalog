@@ -13,7 +13,9 @@ public class HotItemPolicy : IUpdatePolicy
     public (int newSellIn, int newQuality) UpdatedSellInAndQuality(int sellIn, int quality)
     {
         // Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less
-        var increaseValue = sellIn <= QualityIncreaseRateSecondDay ? QualityIncreaseRateSecondValue : sellIn <= QualityIncreaseRateFirstDay ? QualityIncreaseRateFirstValue : QualityIncreaseRateDefault;
+        var increaseValue = 
+            sellIn <= QualityIncreaseRateSecondDay ? QualityIncreaseRateSecondValue : 
+                sellIn <= QualityIncreaseRateFirstDay ? QualityIncreaseRateFirstValue : QualityIncreaseRateDefault;
         var increasedQuality = quality < Config.MaxQuality ? quality + increaseValue : Config.MaxQuality;
             
         // but Quality drops to 0 after the concert
